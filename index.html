@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>If Bhartee Was A Playlist</title>
+    <!-- Google Fonts for premium cinematic look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Lucide Icons via CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Star Canvas Background -->
+    <canvas id="stars-canvas"></canvas>
+    
+    <!-- Background Glow Accents -->
+    <div class="bg-glow pink-glow"></div>
+    <div class="bg-glow lavender-glow"></div>
+    <!-- MAIN CONTAINER -->
+    <main class="app-container">
+        <!-- 1. LANDING SCREEN -->
+        <section id="landing-screen" class="screen active">
+            <div class="landing-content">
+                <div class="cinematic-text-wrapper">
+                    <p class="fade-in-text line-1">If Bhartee was a song...</p>
+                    <p class="fade-in-text line-2">She wouldn't be just one.</p>
+                </div>
+                <p class="fade-in-text line-3 subtitle">A small collection of songs that remind me of different versions of her.</p>
+                
+                <button id="start-btn" class="glow-button fade-in-button">
+                    <span>🎵 Start Listening</span>
+                </button>
+            </div>
+        </section>
+        <!-- 2. CARDS SCREEN -->
+        <section id="cards-screen" class="screen">
+            <header class="screen-header">
+                <h1 class="title-main">If Bhartee Was A Playlist</h1>
+                <p class="title-sub">reminding me of different versions of you.</p>
+            </header>
+            <div class="cards-grid">
+                <!-- Love Card -->
+                <div class="glass-card tilt-card" data-card="love">
+                    <div class="card-glow"></div>
+                    <div class="card-badge-visited">✓ explored</div>
+                    <div class="card-content">
+                        <span class="card-emoji">❤️</span>
+                        <h2 class="card-title">Love</h2>
+                        <p class="card-desc">Some songs aren't about a person. These are.</p>
+                    </div>
+                </div>
+                <!-- Care Card -->
+                <div class="glass-card tilt-card" data-card="care">
+                    <div class="card-glow"></div>
+                    <div class="card-badge-visited">✓ explored</div>
+                    <div class="card-content">
+                        <span class="card-emoji">🌸</span>
+                        <h2 class="card-title">Care</h2>
+                        <p class="card-desc">The songs that remind me of the way you care.</p>
+                    </div>
+                </div>
+                <!-- Comfort Card -->
+                <div class="glass-card tilt-card" data-card="comfort">
+                    <div class="card-glow"></div>
+                    <div class="card-badge-visited">✓ explored</div>
+                    <div class="card-content">
+                        <span class="card-emoji">✨</span>
+                        <h2 class="card-title">Comfort</h2>
+                        <p class="card-desc">The songs that feel like peace after a long day.</p>
+                    </div>
+                </div>
+                <!-- Admiration Card -->
+                <div class="glass-card tilt-card" data-card="admiration">
+                    <div class="card-glow"></div>
+                    <div class="card-badge-visited">✓ explored</div>
+                    <div class="card-content">
+                        <span class="card-emoji">😍</span>
+                        <h2 class="card-title">Admiration</h2>
+                        <p class="card-desc">Some people make observation easy.</p>
+                    </div>
+                </div>
+                <!-- Destiny Card -->
+                <div class="glass-card tilt-card" data-card="destiny">
+                    <div class="card-glow"></div>
+                    <div class="card-badge-visited">✓ explored</div>
+                    <div class="card-content">
+                        <span class="card-emoji">💫</span>
+                        <h2 class="card-title">Destiny</h2>
+                        <p class="card-desc">Some meetings feel planned.</p>
+                    </div>
+                </div>
+                <!-- Mystery Card -->
+                <div class="glass-card tilt-card" data-card="mystery">
+                    <div class="card-glow"></div>
+                    <div class="card-badge-visited">✓ explored</div>
+                    <div class="card-content">
+                        <span class="card-emoji">🎭</span>
+                        <h2 class="card-title">Mystery</h2>
+                        <p class="card-desc">Still trying to figure you out.</p>
+                    </div>
+                </div>
+                <!-- Vampire Card -->
+                <div class="glass-card tilt-card" data-card="vampire">
+                    <div class="card-glow"></div>
+                    <div class="card-badge-visited">✓ explored</div>
+                    <div class="card-content">
+                        <span class="card-emoji">🦇</span>
+                        <h2 class="card-title">Vampire</h2>
+                        <p class="card-desc">Certified midnight explorer.</p>
+                    </div>
+                </div>
+                <!-- Special Card (Locked initially) -->
+                <div class="glass-card tilt-card locked" data-card="special" id="special-card">
+                    <div class="card-glow special-glow"></div>
+                    <div class="card-badge-visited">✓ explored</div>
+                    <div class="card-content">
+                        <div class="lock-icon-container">
+                            <i data-lucide="lock" class="lock-icon"></i>
+                            <i data-lucide="unlock" class="unlock-icon"></i>
+                        </div>
+                        <span class="card-emoji special-emoji">👑</span>
+                        <h2 class="card-title">Special</h2>
+                        <p class="card-desc locked-text">Complete all other sections to unlock this experience.</p>
+                        <p class="card-desc unlocked-text">Saved for last.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer progress indicator -->
+            <footer class="grid-footer">
+                <div class="progress-indicator">
+                    <span>Progress: </span>
+                    <span id="progress-text">0 / 7 Explored</span>
+                    <div class="progress-bar-container">
+                        <div id="progress-bar-fill" class="progress-fill"></div>
+                    </div>
+                </div>
+            </footer>
+        </section>
+        <!-- 3. MUSIC PLAYER MODAL (Full Screen Overlay) -->
+        <section id="player-modal" class="modal-screen">
+            <div class="modal-header-nav">
+                <button id="player-close-btn" class="icon-btn" aria-label="Go back">
+                    <i data-lucide="arrow-left"></i>
+                    <span>Back</span>
+                </button>
+                <span id="player-category-badge" class="category-badge">Category</span>
+            </div>
+            <div class="player-container">
+                <!-- Left side: Album Art & Details -->
+                <div class="player-visualizer-section">
+                    <div class="album-art-container">
+                        <div class="album-glow-back"></div>
+                        <div class="album-art-disc">
+                            <div class="disc-center"></div>
+                            <span id="player-disc-emoji" class="disc-emoji">❤️</span>
+                        </div>
+                    </div>
+                    <div class="now-playing-info">
+                        <h2 id="now-playing-title" class="song-title">Song Title</h2>
+                        <p id="now-playing-desc" class="song-description">Reminding me of something special...</p>
+                    </div>
+                </div>
+                <!-- Right side: Track List & Controls -->
+                <div class="player-playlist-section">
+                    <h3 class="playlist-header">Songs in this mood</h3>
+                    <ul id="playlist-ul" class="playlist-tracks">
+                        <!-- Populated dynamically via JS -->
+                    </ul>
+                    <!-- Playback Controls -->
+                    <div class="playback-controls-wrapper">
+                        <!-- Progress Bar -->
+                        <div class="progress-timeline">
+                            <span id="time-current">0:00</span>
+                            <div class="slider-wrapper">
+                                <input type="range" id="audio-progress" min="0" max="100" value="0" step="0.1">
+                                <div class="slider-fill-visual" id="slider-fill-visual"></div>
+                            </div>
+                            <span id="time-total">0:00</span>
+                        </div>
+                        <!-- Buttons Row -->
+                        <div class="controls-buttons-row">
+                            <button id="prev-track-btn" class="icon-btn nav-btn" aria-label="Previous track">
+                                <i data-lucide="skip-back"></i>
+                            </button>
+                            <button id="play-pause-btn" class="play-btn-main" aria-label="Play/Pause">
+                                <i data-lucide="play" class="play-icon"></i>
+                                <i data-lucide="pause" class="pause-icon hidden"></i>
+                            </button>
+                            <button id="next-track-btn" class="icon-btn nav-btn" aria-label="Next track">
+                                <i data-lucide="skip-forward"></i>
+                            </button>
+                        </div>
+                        <!-- Volume control row -->
+                        <div class="volume-control-row">
+                            <button id="volume-toggle-btn" class="icon-btn" aria-label="Mute/Unmute">
+                                <i data-lucide="volume-2" class="vol-icon"></i>
+                                <i data-lucide="volume-x" class="mute-icon hidden"></i>
+                            </button>
+                            <div class="volume-slider-wrapper">
+                                <input type="range" id="volume-slider" min="0" max="1" value="0.8" step="0.05">
+                                <div class="volume-fill-visual" id="volume-fill-visual"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 4. VAMPIRE CARD MODAL -->
+        <section id="vampire-modal" class="modal-screen">
+            <div class="modal-header-nav">
+                <button id="vampire-close-btn" class="icon-btn" aria-label="Go back">
+                    <i data-lucide="arrow-left"></i>
+                    <span>Back</span>
+                </button>
+                <span class="category-badge warning-badge">🦇 Certified Vampire</span>
+            </div>
+            <div class="vampire-card-container">
+                <div class="vampire-card-header">
+                    <div class="vampire-glow-back"></div>
+                    <span class="vampire-avatar">🦇</span>
+                    <h2 class="vampire-title">Certified Vampire</h2>
+                    <p class="vampire-subtitle">Official Activity Checklist</p>
+                </div>
+                <div class="vampire-checklist">
+                    <div class="checklist-item">
+                        <div class="check-box checked">✓</div>
+                        <span class="check-text">Hair wash at 1 AM</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check-box checked">✓</div>
+                        <span class="check-text">Active after midnight</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check-box checked">✓</div>
+                        <span class="check-text">Researches hidden meanings</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check-box checked">✓</div>
+                        <span class="check-text">Randomly appears in chats</span>
+                    </div>
+                    <div class="checklist-item danger-item">
+                        <div class="check-box warning-box">⚠</div>
+                        <span class="check-text">Potential blood thief</span>
+                    </div>
+                </div>
+                <button id="report-vampire-btn" class="glow-button report-btn">
+                    <span>Report Vampire Activity</span>
+                </button>
+            </div>
+        </section>
+        <!-- 5. UNLOCK SPECIAL CARD TRANSITION OVERLAY -->
+        <div id="unlock-overlay" class="overlay-fullscreen hidden">
+            <div class="unlock-glow"></div>
+            <div class="unlock-content">
+                <div class="gold-box">
+                    <i data-lucide="unlock" class="gold-lock-icon"></i>
+                </div>
+                <h2 class="unlock-title">Something has unlocked.</h2>
+                <p class="unlock-subtitle">The special piece of the puzzle is now revealed.</p>
+                <button id="unlock-proceed-btn" class="gold-button">
+                    <span>Reveal Special Entry</span>
+                </button>
+            </div>
+        </div>
+        <!-- 6. FINAL SCREEN -->
+        <section id="final-screen" class="screen">
+            <div class="final-content">
+                <div class="cinematic-text-wrapper">
+                    <p class="fade-in-text final-line-1">Thanks for listening.</p>
+                    <p class="fade-in-text final-line-2">One song wasn't enough.</p>
+                </div>
+                <div class="floating-note-container">
+                    <i data-lucide="music" class="floating-note"></i>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- 7. AUDIO ERROR GLASS NOTIFICATION -->
+    <div id="audio-error-toast" class="error-toast hidden">
+        <div class="toast-content">
+            <i data-lucide="alert-triangle" class="toast-icon"></i>
+            <div class="toast-text">
+                <span class="toast-title">Audio File Missing</span>
+                <span id="toast-message" class="toast-desc">Please add the required file to your audio/ folder.</span>
+            </div>
+            <button id="toast-copy-btn" class="toast-copy-btn" title="Copy file path">
+                <i data-lucide="copy" class="copy-ic"></i>
+                <span class="copy-lbl">Copy path</span>
+            </button>
+            <button id="toast-close-btn" class="toast-close-btn">&times;</button>
+        </div>
+    </div>
+    <!-- Script File -->
+    <script src="script.js"></script>
+</body>
+</html>
